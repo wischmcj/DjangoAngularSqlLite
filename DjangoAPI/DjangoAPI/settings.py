@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders.Middleware'
+    'corsheaders',
+    'EmployeeApp.apps.EmployeeappConfig',
+    'rest_framework'
 ]
 
 CORS_ORIGIN_ALLOWALL = True
@@ -45,6 +47,7 @@ CORS_ORIGIN_ALLOWALL = True
 #CORS_ORIGIN_WHITELIST = ??
 
 MIDDLEWARE = [
+    'corsheaders'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
