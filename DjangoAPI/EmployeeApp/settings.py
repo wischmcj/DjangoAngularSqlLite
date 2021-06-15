@@ -129,7 +129,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-{
-    "python.pythonPath": "C:/Users/wisch/OneDrive/Documents/GItHubProjects/PersonalProjects/DjangoAngularSqlLite/myEnv/Lib/site-packages/django/bin/__pycache__",
-}
