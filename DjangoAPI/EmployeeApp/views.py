@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.decorators.csrf import crsf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
@@ -9,8 +9,9 @@ from django.http.response import JsonResponse
 from EmployeeApp.models import Departments,Employees
 from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
 
+@csrf_exempt
 def departmentApi(request,id =0):
-        if request.method == GET:
+        if request.method == 'GET':
             departments = Departments.objects.all()
             departments_serializer = DepartmentSerializer(departments, many=True)
             return JsonResponse(departments_serializer.data,safe=False)
@@ -18,7 +19,7 @@ def departmentApi(request,id =0):
         elif request.method == 'POST':
             department_data=JSONParser().parse(request)
             departments_serializer = DepartmentSerializer(data =department_data)
-            if departments_serializer.isValid():
+            if departments_serializer.is_valid():
                     departments_serializer.save
                     return  JsonResponse('Data saved successfully!',safe=False)
             return  JsonResponse('Failed to add',safe=False)
