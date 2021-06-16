@@ -13,8 +13,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Departments',
             fields=[
-                ('DeparmentID', models.AutoField(primary_key=True, serialize=False)),
-                ('DeparmentName', models.CharField(max_length=100)),
+                ('DepartmentID', models.AutoField(primary_key=True, serialize=False)),
+                ('DepartmentName', models.CharField(max_length=100)),
             ],
         ),
     ]
