@@ -14,6 +14,7 @@ export class SharedService {
   addDepartment(val:any){
     return this.http.post(this.APIUrl + '/department/',val);
   }
+
   getDepList():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/department/');
   }
@@ -21,6 +22,7 @@ export class SharedService {
   updateDepartment(val:any){
     return this.http.put(this.APIUrl + '/department/',val);
   }
+
   deleteDepartment(val:any){
     return this.http.delete(this.APIUrl + '/department/',val);
   }
@@ -28,7 +30,7 @@ export class SharedService {
   addEmployee(val:any){
     return this.http.post(this.APIUrl + '/employee/',val);
   }
-  getDepList():Observable<any[]>{
+  getEmpList():Observable<any[]>{
     return this.http.get<any[]>(this.APIUrl + '/employee/');
   }
 
@@ -37,6 +39,15 @@ export class SharedService {
   }
   deleteEmployee(val:any){
     return this.http.delete(this.APIUrl + '/employee/',val);
+  }
+
+  UploadPhoto(val:any){
+    return this.http.post(this.APIUrl + '/SaveFile/',val);
+
+  }
+
+  getAllDepartmentNames():Observable<any[]>{
+    return this.http.get<any[]>(this.APIUrl + '/department/');
   }
 
 
