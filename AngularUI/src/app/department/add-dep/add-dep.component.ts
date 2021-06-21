@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
+
+import {SharedService} from 'src/app/shared.service';
 
 @Component({
   selector: 'app-add-dep',
@@ -9,7 +11,16 @@ export class AddDepComponent implements OnInit {
 
   constructor() { }
 
+  @Input() dep:any;
+  DepartmentID:string = "";
+  DepartmentName:string = "";
+  
+  
   ngOnInit(): void {
+      this.DepartmentID = this.DepartmentID;
+      this.DepartmentName = this.DepartmentName;
   }
+
+  
 
 }

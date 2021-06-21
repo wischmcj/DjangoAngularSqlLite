@@ -1,4 +1,35 @@
 
+
+<button type="button" class="btn btn-primary float-right m-2" 
+data-bs-toggle="modal" data-bs-target="#exampleModal"
+(click)="addClick()"
+data-backdrop="static" data-keyboard="false">
+    Add Department
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+          <button type="button" class="close"data-bs-dismiss="modal" aria-label="Close"
+          (click)="closeClick()" >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-add-dep [dep]="dep" *ngIf="ActivateAddEditDepComp">
+            </app-add-dep>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+
+
 <table class="table table-striped">
     <thead>
         <tr>   
@@ -12,10 +43,10 @@
                 <td>{{dataItem.DepartmentID}}</td>
                 <td>{{dataItem.DepartmentName}}</td>
                 <td>
-                    <button type="button" class=" btn btn-light ml-1">
+                    <button type="button" class=" btn btn-light mr-20">
                         Edit 
                     </button>
-                    <button type="button" class=" btn btn-light ml-1">
+                    <button type="button" class=" btn btn-light mr-20">
                         Delete
                     </button>
                 </td>
