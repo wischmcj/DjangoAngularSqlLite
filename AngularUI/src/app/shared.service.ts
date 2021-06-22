@@ -24,7 +24,7 @@ export class SharedService {
   }
 
   deleteDepartment(val:any){
-    return this.http.delete(this.APIUrl + '/department/',val);
+    return this.http.delete(this.APIUrl + '/department/'+ val);
   }
 
   addEmployee(val:any){
@@ -38,7 +38,7 @@ export class SharedService {
     return this.http.put(this.APIUrl + '/employee/',val);
   }
   deleteEmployee(val:any){
-    return this.http.delete(this.APIUrl + '/employee/',val);
+    return this.http.delete(this.APIUrl + '/employee/'+val);
   }
 
   UploadPhoto(val:any){

@@ -9,7 +9,7 @@ import {SharedService} from 'src/app/shared.service';
 })
 export class AddDepComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:SharedService) { }
 
   @Input() dep:any;
   DepartmentID:string = "";
@@ -17,10 +17,26 @@ export class AddDepComponent implements OnInit {
   
   
   ngOnInit(): void {
-      this.DepartmentID = this.DepartmentID;
-      this.DepartmentName = this.DepartmentName;
+    
+    this.DepartmentID=this.dep.DepartmentID;
+    this.DepartmentName=this.dep.DepartmentName;
+    console.log(this.DepartmentID +" " +this.DepartmentName);
   }
 
-  
+  addDepartment(){
+    var val = {DepartmentID:this.DepartmentID,
+                DepartmentName:this.DepartmentName};
+    this.service.addDepartment(val).subscribe(res=>{
+      alert(res.toString());
+    });
+  }
 
+  updateDepartment(){
+    var val = {DepartmentID:this.DepartmentID,
+      DepartmentName:this.DepartmentName};
+    this.service.updateDepartment(val).subscribe(res=>{
+    alert(res.toString());
+    });
+
+  }
 }
