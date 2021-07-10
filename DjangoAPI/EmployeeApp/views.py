@@ -4,9 +4,11 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from django.core.files.storage import default_storage
+from django.http import HttpRequest,HttpResponse
 
 from EmployeeApp.models import Departments,Employees
 from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
+from producer import kfk
 
 @csrf_exempt
 def employeeApi(request,id=0):
@@ -40,6 +42,10 @@ def employeeApi(request,id=0):
 
 @csrf_exempt
 def departmentApi(request,id=0):
+    
+    # producer = KafkaProducer(bootstrap_servers=['localhost:9092'],
+    #                      value_serializer=lambda x: 
+    #                      dumps(x).encode('utf-8'))
     if request.method=='GET':
         departments = Departments.objects.all()
         departments_serializer = DepartmentSerializer(departments, many=True)
@@ -57,9 +63,11 @@ def departmentApi(request,id=0):
         department_data = JSONParser().parse(request)
         department=Departments.objects.get(DepartmentID=department_data['DepartmentID'])
         department_serializer=DepartmentSerializer(department,data=department_data)
+        kfk(department_data)
         if department_serializer.is_valid():
             department_serializer.save()
             return JsonResponse("Updated Successfully!!", safe=False)
+        
         return JsonResponse("Failed to Update.", safe=False)
 
     elif request.method=='DELETE':
@@ -73,3 +81,4 @@ def SaveFiles(request):
     file = request.FILES['uploadedFile']
     file_name = default_storage.save(file.name,file)
     return JsonResponse(file_name,safe=False)
+
