@@ -13,20 +13,3 @@ class Employees(models.Model):
     Department = models.CharField(max_length=100)
     DateOfJoining = models.DateField()
     PhotoFileName = models.CharField(max_length=100)
-
-class DepartmentConsumer(object):
-
-    def __init__(self, name=None):
-        self.name = name
-
-    class Meta:
-        managed = False
-
-
-class DepartmentProducer(object):
-
-    def __init__(self, name):
-        self.name = name
-
-    class Meta:
-        managed = False
