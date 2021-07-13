@@ -1,4 +1,4 @@
-# from EmployeeApp.models import Departments,Employees
+from EmployeeApp.models import Departments,Employees
 from kafka import KafkaConsumer,KafkaProducer,TopicPartition
 import threading, time
 from datetime import datetime
@@ -10,7 +10,6 @@ import logging
 from kafka import KafkaConsumer
 import _sqlite3
 import pickle
-
 
 def create_connection(db_file):
     """ create a database connection to the SQLite database
@@ -42,19 +41,18 @@ def create_emp(conn, employee):
     return cur.lastrowid
     
 def cons():
-    print("here")
+    print("consume")
     consumer = KafkaConsumer('Ptopic', 
         bootstrap_servers=['localhost:9092'], 
         api_version=(0, 10) 
     )
-    print("here")
     for message in consumer:
         deserialized_data = pickle.loads(message.value) 
         print(deserialized_data)
 
 def main():
     print("here")
-    cons()
+    # cons()
     # database = r"C:\Users\wisch\OneDrive\Documents\GItHubProjects\PersonalProjects\DjangoAngularSqlLite\DjangoAPI\db.sqlite3"
 
     # # create a database connection
