@@ -7,6 +7,7 @@ from django.core.files.storage import default_storage
 
 from EmployeeApp.models import Departments,Employees
 from EmployeeApp.serializers import DepartmentSerializer,EmployeeSerializer
+from EmployeeApp.producer import kfk
 
 @csrf_exempt
 def employeeApi(request,id=0):
@@ -27,6 +28,7 @@ def employeeApi(request,id=0):
         Employee_data = JSONParser().parse(request)
         Employee=Employees.objects.get(EmployeeID=Employee_data['EmployeeID'])
         Employee_serializer=EmployeeSerializer(Employee,data=Employee_data)
+        kfk()
         if Employee_serializer.is_valid():
             Employee_serializer.save()
             return JsonResponse("Updated Successfully!!", safe=False)
